@@ -1,12 +1,12 @@
 {
-  "name": "Roundy",
+  "name": "Connected",
   "author": "Vladislav 'midlneedle' Iv ",
   "version": "1.2.0",
   "keywords": ["pebble-app"],
   "private": true,
   "dependencies": {},
   "pebble": {
-    "displayName": "Roundy",
+    "displayName": "Connected",
     "uuid": "00000000-0000-0000-0000-000000000001",
     "sdkVersion": "3",
     "enableMultiJS": true,
