@@ -9,6 +9,10 @@
 #include "roundy_palette.h"
 #include <math.h>
 
+/* Animation tuning */
+#define DIAG_FRAME_MS 16 /* target frame interval in ms (approx 60Hz -> 16ms) */
+#define DIAG_DURATION_MS 120 /* total animation duration in ms (short and snappy) */
+
 /* choose animation color based on progress: three steps
  * 0.0 - 0.333: #555555
  * 0.333 - 0.666: #AAAAAA
@@ -181,8 +185,8 @@ static void prv_diag_anim_timer(void *ctx) {
   if (!state) {
     return;
   }
-  const int FRAME_MS = 5; /* user requested small delay/fast frames */
-  const int DURATION_MS = 200; /* quick and smooth total duration */
+  const int FRAME_MS = DIAG_FRAME_MS;
+  const int DURATION_MS = DIAG_DURATION_MS;
   const float delta = (float)FRAME_MS / (float)DURATION_MS;
 
   state->diag_progress += delta;
@@ -214,7 +218,8 @@ void roundy_digit_layer_start_diag_flip(RoundyDigitLayer *rdl) {
   state->diag_progress = 0.0f;
   /* start after a very short delay (FRAME_MS) to create the requested small delay
    * and drive a fast animation */
-  state->anim_timer = app_timer_register(5, prv_diag_anim_timer, rdl->layer);
+  /* schedule first frame after one FRAME_MS interval */
+  state->anim_timer = app_timer_register(DIAG_FRAME_MS, prv_diag_anim_timer, rdl->layer);
 }
 
 void roundy_digit_layer_set_time(RoundyDigitLayer *layer, const struct tm *time_info) {
