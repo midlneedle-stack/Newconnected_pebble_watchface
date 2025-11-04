@@ -10,6 +10,7 @@
     "uuid": "00000000-0000-0000-0000-000000000001",
     "sdkVersion": "3",
     "enableMultiJS": true,
+    "projectType": "native",
     "targetPlatforms": [
       "aplite",
       "basalt",
@@ -20,9 +21,9 @@
     "watchapp": {
       "watchface": true
     },
-    "messageKeys": [
-      "dummy"
-    ],
+    "messageKeys": {
+      "dummy": 0
+    },
     "resources": {
       "media": []
     }
